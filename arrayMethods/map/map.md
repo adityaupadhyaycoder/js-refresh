@@ -123,14 +123,17 @@ const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
 # CQ-5: How to detect a sparse array ?
 
 Ans:
-1. Sparse arrays can be detected by checking if the length property of the array
-   is greater than the number of elements in the array.
-2. By using the Object.prototype.hasOwnProperty() method.
-
 ```js
 const arr = [1, 2, 3];
 arr[4] = 4;
+```
+1. if the length property of the array
+   is greater than the number of elements in the array.
+```js
 arr.length > arr.filter(() => true).length; // true
+```
+2. By using the Object.prototype.hasOwnProperty() method.
+```js
 arr.hasOwnProperty(3); // false
 ```
 
