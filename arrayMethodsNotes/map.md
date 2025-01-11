@@ -19,7 +19,6 @@ the callback function’s `this` would either default to `undefined`
 # CQ-2: What is need for returning the same array as the third argument inside the callback function ?
 
 Ans:
-
 1.  If we have generic function to pass inside map as callback then it has no context what array it's being used for.
 2.  The third argument can be useful when we are chaining several array methods
     and need to access the intermediate state of the array.
@@ -57,10 +56,11 @@ d.length = 5; // [ 1, 2, <3 empty items> ]
 const e = [1, 2, 3, 4, 5];
 delete e[2]; // [ 1, 2, <1 empty item>, 4, 5 ]
 
+```
+
 # CQ-4: What is problem with sparse Array ?
 
 Ans:
-
 1. In some operations, empty slots behave as if they are filled with undefined.
 
 ```js
@@ -75,11 +75,15 @@ console.log(i);
 // Spreading
 const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
 
+```
+
 2. But in others (most notably array iteration methods), empty slots are skipped.
+3. ```js
    const mapped = arr.map((i) => i + 1); // [ 2, 3, <2 empty items>, 6 ]
    arr.forEach((i) => console.log(i)); // 1 2 5
    const filtered = arr.filter(() => true); // [ 1, 2, 5 ]
    const hasFalsy = arr.some((k) => !k); // false
+   ```
 
 ```js
 // Property enumeration
@@ -87,9 +91,13 @@ const keys = Object.keys(arr); // [ '0', '1', '4' ]
 for (const key in arr) {
 console.log(key);
 }
+```
+```js
 // Logs: '0' '1' '4'
 // Spreading into an object uses property enumeration, not the array's iterator
 const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
+
+```
 
 3. Sparse arrays can have slower performance in some operations due to how JavaScript engines handle them.
 
@@ -106,6 +114,7 @@ const arr = [1, 2, 3];
 arr[4] = 4;
 arr.length > arr.filter(() => true).length; // true
 arr.hasOwnProperty(3); // false
+```
 
 # CQ-6: 1.What is dense Arrays ?
 
@@ -118,4 +127,5 @@ All elements have values, with no missing or undefined slots
 const greet = () => {
   console.log("Hello, World!");
 }
+```
 
