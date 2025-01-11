@@ -1,6 +1,6 @@
-# CQ-1:-> What is need of second argument thisArg ?
+# CQ-1: What is need of second argument thisArg ?
 
-Ans:->
+Ans:
 The second argument `thisArg` allows you to specify the value of `this`
 inside the callback function. This is useful when you want to use an
 external object or context within the callback function. Without `thisArg`,
@@ -16,9 +16,9 @@ the callback function’s `this` would either default to `undefined`
 
           console.log(result); // Output: [2, 4, 6]
 
-# CQ-2:-> What is need for returning the same array as the third argument inside the callback function ?
+# CQ-2: What is need for returning the same array as the third argument inside the callback function ?
 
-Ans:->
+Ans:
 
 1.  If we have generic function to pass inside map as callback then it has no context what array it's being used for.
 2.  The third argument can be useful when we are chaining several array methods
@@ -33,11 +33,12 @@ Ans:->
                   return num;
                 })
 
-# CQ-3:-> What is sparse array ?
+# CQ-3: What is sparse array ?
 
-Ans:->
+Ans:
 A sparse array is an array that contains "empty slots", meaning some indices are not assigned any values. These empty slots are different from indices that are explicitly set to undefined.
 
+```js
 // Array constructor:
 const a = Array(5); // [ <5 empty items> ]
 
@@ -56,12 +57,13 @@ d.length = 5; // [ 1, 2, <3 empty items> ]
 const e = [1, 2, 3, 4, 5];
 delete e[2]; // [ 1, 2, <1 empty item>, 4, 5 ]
 
-# CQ-4:-> What is problem with sparse Array ?
+# CQ-4: What is problem with sparse Array ?
 
-Ans:->
+Ans:
 
 1. In some operations, empty slots behave as if they are filled with undefined.
 
+```js
 const arr = [1, 2, , , 5]; // Create a sparse array
 // Indexed access
 console.log(arr[2]); // undefined
@@ -79,6 +81,7 @@ const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
    const filtered = arr.filter(() => true); // [ 1, 2, 5 ]
    const hasFalsy = arr.some((k) => !k); // false
 
+```js
 // Property enumeration
 const keys = Object.keys(arr); // [ '0', '1', '4' ]
 for (const key in arr) {
@@ -90,22 +93,23 @@ const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
 
 3. Sparse arrays can have slower performance in some operations due to how JavaScript engines handle them.
 
-# CQ-5:-> How to detect a sparse array ?
+# CQ-5: How to detect a sparse array ?
 
-Ans:->
+Ans:
 
 1. Sparse arrays can be detected by checking if the length property of the array
    is greater than the number of elements in the array.
 2. By using the Object.prototype.hasOwnProperty() method.
 
+```js
 const arr = [1, 2, 3];
 arr[4] = 4;
 arr.length > arr.filter(() => true).length; // true
 arr.hasOwnProperty(3); // false
 
-# CQ-6:-> 1.What is dense Arrays ?
+# CQ-6: 1.What is dense Arrays ?
 
-Ans:->
+Ans:
 These are the regular arrays where every index is filled with a value.
 All elements have values, with no missing or undefined slots
 
