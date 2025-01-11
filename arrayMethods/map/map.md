@@ -7,6 +7,7 @@ external object or context within the callback function. Without `thisArg`,
 the callback function’s `this` would either default to `undefined`
 (in strict mode) or the global object (in non-strict mode).
 
+```js
 const obj = { multiplier: 2 };
 const numbers = [1, 2, 3];
 const result = numbers.myMap(function (num) {
@@ -14,6 +15,7 @@ const result = numbers.myMap(function (num) {
     }, obj);
 
 console.log(result); // Output: [2, 4, 6]
+```
 
 # CQ-2: What is need for returning the same array as the third argument inside the callback function ?
 
@@ -22,6 +24,7 @@ Ans:
 2.  The third argument can be useful when we are chaining several array methods
     and need to access the intermediate state of the array.
 
+```js
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 numbers
@@ -30,6 +33,7 @@ numbers
     // arr contains only sum numbers
     return num;
 })
+```
 
 # CQ-3: What is sparse array ?
 
