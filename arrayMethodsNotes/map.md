@@ -78,7 +78,7 @@ const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
 ```
 
 2. But in others (most notably array iteration methods), empty slots are skipped.
-3. ```js
+3.  ```js
    const mapped = arr.map((i) => i + 1); // [ 2, 3, <2 empty items>, 6 ]
    arr.forEach((i) => console.log(i)); // 1 2 5
    const filtered = arr.filter(() => true); // [ 1, 2, 5 ]
