@@ -78,12 +78,13 @@ const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
 ```
 
 2. But in others (most notably array iteration methods), empty slots are skipped.
-3.  ```js
+
+ ```js
    const mapped = arr.map((i) => i + 1); // [ 2, 3, <2 empty items>, 6 ]
    arr.forEach((i) => console.log(i)); // 1 2 5
    const filtered = arr.filter(() => true); // [ 1, 2, 5 ]
    const hasFalsy = arr.some((k) => !k); // false
-   ```
+ ```
 
 ```js
 // Property enumeration
@@ -92,6 +93,7 @@ for (const key in arr) {
 console.log(key);
 }
 ```
+
 ```js
 // Logs: '0' '1' '4'
 // Spreading into an object uses property enumeration, not the array's iterator
@@ -104,7 +106,6 @@ const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
 # CQ-5: How to detect a sparse array ?
 
 Ans:
-
 1. Sparse arrays can be detected by checking if the length property of the array
    is greater than the number of elements in the array.
 2. By using the Object.prototype.hasOwnProperty() method.
