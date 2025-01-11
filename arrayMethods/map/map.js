@@ -13,9 +13,9 @@ Array.prototype.myMap = function (callback, thisArg) {
   if (typeof callback !== "function") {
     throw new TypeError(`${callback} is not a function`);
   }
-
+  const length = this.length;
   const newArr = [];
-  for (let i = 0; i < this.length; i++) {
+  for (let i = 0; i < length; i++) {
     if (i in this) {
       // Check if element exists in the array (avoid sparse arrays)
       newArr.push(callback.call(thisArg, this[i], i, this));
@@ -25,20 +25,15 @@ Array.prototype.myMap = function (callback, thisArg) {
 };
 
 const users = [
-  {
-    firstName: "Aditya",
-    lastName: "Upadhyay",
-  },
-  {
-    firstName: "Ram",
-    lastName: "Upadhyay",
-  },
+  { id: 1, name: "Alice", age: 30 },
+  { id: 2, name: "Bob", age: 25 },
+  { id: 3, name: "Charlie", age: 35 },
 ];
 
-const usersWithFullname = users.myMap((user, index, arr) => {
-  const fullName = user?.firstName + " " + user?.lastName;
-  return fullName;
-});
+// Use map() to extract only the names of the users
+const userNames = users.map((user) => user.name);
+
+console.log(userNames); // ["Alice", "Bob", "Charlie"]
 
 const numbers = [1, 2, 3, 4];
 const incremented = numbers.myMap((num) => num + 1);
