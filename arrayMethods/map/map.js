@@ -35,8 +35,36 @@ const users = [
 
 // Use map() to extract only the names of the users
 const userNames = users.map((user) => user.name);
-
 console.log(userNames); // ["Alice", "Bob", "Charlie"]
 
 const numbers = [1, 2, 3, 4];
 const incremented = numbers.myMap((num) => num + 1);
+
+
+//  Mutating the Original Array
+const arr = [1, 2, 3];
+arr.map((x, i, array) => {
+  array[i] = x * 2;
+});
+console.log(arr); // [2, 4, 6]
+
+const arr2 = [1, 2, 3];
+arr2.map((x, i, array) => {
+  array[i - 11] = x * 2;
+});
+console.log(arr); // [ 1, 2, 3, '-10': 2, '-9': 4, '-8': 6 ] but length will be same due to negative index.
+
+// The map method provides a reference to the original array as the third argument.
+// Modifying array[i] updates the original array directly.
+
+const arr3 = ['10', '20', '30'];
+const result = arr3.map(parseInt);
+console.log(result); // [10, NaN, NaN]
+
+/*
+parseInt takes two arguments: the string and the index.
+parseInt('10', 0) → 10.
+parseInt('20', 1) → NaN (invalid base 1).
+parseInt('30', 2) → NaN (invalid in base 2).
+*/
+
