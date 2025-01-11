@@ -155,7 +155,7 @@ const greet = () => {
 };
 ```
 
-# CQ-7: What happens if the callback in map() has no return statement?
+# CQ-7: What happens if the callback has no return statement?
 
 Ans:
 The callback will return undefined for every element, and the resulting array will be filled with undefined values. This is because map() always creates a new array based on the returned value of the callback function for each element.
