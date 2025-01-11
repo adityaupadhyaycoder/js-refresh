@@ -39,22 +39,30 @@ A sparse array is an array that contains "empty slots", meaning some indices are
 ```js
 // Array constructor:
 const a = Array(5); // [ <5 empty items> ]
+```
 
+```js
 // Consecutive commas in array literal:
 const b = [1, 2, , , 5]; // [ 1, 2, <2 empty items>, 5 ]
+```
 
+```js
 // Directly setting a slot with index greater than array.length:
 const c = [1, 2];
 c[4] = 5; // [ 1, 2, <2 empty items>, 5 ]
 
+```
+
+```js
 // Elongating an array by directly setting .length:
 const d = [1, 2];
 d.length = 5; // [ 1, 2, <3 empty items> ]
+```
 
+```js
 // Deleting an element:
 const e = [1, 2, 3, 4, 5];
 delete e[2]; // [ 1, 2, <1 empty item>, 4, 5 ]
-
 ```
 
 # CQ-4: What is problem with sparse Array ?
@@ -64,16 +72,24 @@ Ans:
 
 ```js
 const arr = [1, 2, , , 5]; // Create a sparse array
+```
+
+```js
 // Indexed access
 console.log(arr[2]); // undefined
+```
+
+```js
 // For...of
 for (const i of arr) {
 console.log(i);
 }
 // Logs: 1 2 undefined undefined 5
+```
+
+```js
 // Spreading
 const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
-
 ```
 
 2. But in others (most notably array iteration methods), empty slots are skipped.
@@ -89,15 +105,13 @@ const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
 // Property enumeration
 const keys = Object.keys(arr); // [ '0', '1', '4' ]
 for (const key in arr) {
-console.log(key);
+console.log(key); // Logs: '0' '1' '4'
 }
 ```
 
 ```js
-// Logs: '0' '1' '4'
 // Spreading into an object uses property enumeration, not the array's iterator
 const objectSpread = { ...arr }; // { '0': 1, '1': 2, '4': 5 }
-
 ```
 
 3. Sparse arrays can have slower performance in some operations due to how JavaScript engines handle them.
