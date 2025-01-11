@@ -7,13 +7,13 @@ external object or context within the callback function. Without `thisArg`,
 the callback function’s `this` would either default to `undefined`
 (in strict mode) or the global object (in non-strict mode).
 
-          const obj = { multiplier: 2 };
-          const numbers = [1, 2, 3];
-          const result = numbers.myMap(function (num) {
-            return num * this.multiplier;
-          }, obj);
+const obj = { multiplier: 2 };
+const numbers = [1, 2, 3];
+const result = numbers.myMap(function (num) {
+    return num * this.multiplier;
+    }, obj);
 
-          console.log(result); // Output: [2, 4, 6]
+console.log(result); // Output: [2, 4, 6]
 
 # CQ-2: What is need for returning the same array as the third argument inside the callback function ?
 
@@ -22,14 +22,14 @@ Ans:
 2.  The third argument can be useful when we are chaining several array methods
     and need to access the intermediate state of the array.
 
-                 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-                 numbers
-                 .filter(num => num % 2 === 0)
-                 .map((num, index, arr) => {
-                  // arr contains only sum numbers
-                  return num;
-                })
+numbers
+.filter(num => num % 2 === 0)
+.map((num, index, arr) => {
+    // arr contains only sum numbers
+    return num;
+})
 
 # CQ-3: What is sparse array ?
 
@@ -82,7 +82,7 @@ console.log(arr[2]); // undefined
 ```js
 // For...of
 for (const i of arr) {
-console.log(i);
+    console.log(i);
 }
 // Logs: 1 2 undefined undefined 5
 ```
@@ -105,7 +105,7 @@ const another = [...arr]; // "another" is [ 1, 2, undefined, undefined, 5 ]
 // Property enumeration
 const keys = Object.keys(arr); // [ '0', '1', '4' ]
 for (const key in arr) {
-console.log(key); // Logs: '0' '1' '4'
+    console.log(key); // Logs: '0' '1' '4'
 }
 ```
 
@@ -130,7 +130,7 @@ arr.length > arr.filter(() => true).length; // true
 arr.hasOwnProperty(3); // false
 ```
 
-# CQ-6: 1.What is dense Arrays ?
+# CQ-6: What is dense Arrays ?
 
 Ans:
 These are the regular arrays where every index is filled with a value.
