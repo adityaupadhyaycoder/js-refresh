@@ -13,15 +13,18 @@ Array.prototype.myMap = function (callback, thisArg) {
   if (typeof callback !== "function") {
     throw new TypeError(`${callback} is not a function`);
   }
-  const length = this.length;
-  const newArr = [];
-  for (let i = 0; i < length; i++) {
-    if (i in this) {
-      // Check if element exists in the array (avoid sparse arrays)
-      newArr.push(callback.call(thisArg, this[i], i, this));
+
+  const arrayLength = this.length;
+  const resultArray = [];
+
+  for (let index = 0; index < arrayLength; index++) {
+    if (index in this) {
+      // Avoid sparse array issues by checking if the index exists
+      const transformedValue = callback.call(thisArg, this[index], index, this);
+      resultArray.push(transformedValue);
     }
   }
-  return newArr;
+  return resultArray;
 };
 
 const users = [
