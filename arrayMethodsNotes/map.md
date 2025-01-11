@@ -7,7 +7,6 @@ external object or context within the callback function. Without `thisArg`,
 the callback function’s `this` would either default to `undefined`
 (in strict mode) or the global object (in non-strict mode).
 
-          Example:
           const obj = { multiplier: 2 };
           const numbers = [1, 2, 3];
           const result = numbers.myMap(function (num) {
